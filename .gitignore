@@ -1,5 +1,5 @@
 node_modules
 package-lock.json
-.local.env
+.env
 .prod.env
 index.html
