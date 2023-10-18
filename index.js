@@ -3,6 +3,14 @@ const express = require('express');
 const { Pool } = require('pg');
 const app = express();
 
+app.use((req, res, next) => {
+  const apiKey = req.get('X-API-Key');
+  if (!apiKey || apiKey !== process.env.API_KEY) {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
+  next();
+});
+
 app.use(express.json());
 
 const pool = new Pool({
