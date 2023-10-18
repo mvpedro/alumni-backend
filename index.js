@@ -1,7 +1,14 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { Pool } = require('pg');
 const app = express();
+
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'X-API-Key']
+}));
 
 app.use((req, res, next) => {
   const apiKey = req.get('X-API-Key');
