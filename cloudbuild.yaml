@@ -1,0 +1,24 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/alumni-backend-402422/alumni-backend', '.']
+
+  # Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/alumni-backend-402422/alumni-backend']
+
+  # Deploy to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'alumni-backend'
+      - '--image'
+      - 'gcr.io/alumni-backend-402422/alumni-backend'
+      - '--region'
+      - 'southamerica-east1'
+      - '--platform'
+      - 'managed'
+      - '--set-env-vars'
+      - 'DB_HOST=35.198.51.127,DB_PORT=5432,DB_NAME=alumni-backend-pg,DB_USER=postgres,DB_PASSWORD=0@XHdDeqMXNT,NODE_ENV=production,INSTANCE_ID=alumni-backend-pg,API_KEY=DVksj3jDrgEEL6r5f9Qa'
+      - '--no-allow-unauthenticated' 
