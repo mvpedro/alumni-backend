@@ -22,3 +22,5 @@ steps:
       - '--set-env-vars'
       - 'DB_HOST=35.198.51.127,DB_PORT=5432,DB_NAME=alumni-backend-pg,DB_USER=postgres,DB_PASSWORD=0@XHdDeqMXNT,NODE_ENV=production,INSTANCE_ID=alumni-backend-pg,API_KEY=DVksj3jDrgEEL6r5f9Qa'
       - '--no-allow-unauthenticated' 
+  options:
+    logging: CLOUD_LOGGING_ONLY
